@@ -1,0 +1,33 @@
+{
+  "name": "recipes",
+  "version": "1.0.0",
+  "description": "A simple SQL recipe database to explore many to many joins with Sequalize on a NodeJS Express server.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest -watchAll",
+    "start": "node server.js",
+    "watch": "nodemon server.js",
+    "seed": "node seeds/seed.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chip-L/recipes.git"
+  },
+  "author": "Chip Long",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Chip-L/recipes/issues"
+  },
+  "homepage": "https://github.com/Chip-L/recipes#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "connect-session-sequelize": "^7.0.4",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.2",
+    "express-session": "^1.17.2",
+    "jest": "^27.0.4",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.6.2"
+  }
+}
