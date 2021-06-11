@@ -46,7 +46,7 @@ Recipe.init(
       comment: "this is in minutes",
     },
     servings: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       defaultValue: 0,
       validate: {
         isNumeric: true,
@@ -61,6 +61,7 @@ Recipe.init(
     },
     userId: {
       type: DataTypes.INTEGER,
+      allowNull: false,
     },
   },
   {
