@@ -1,0 +1,51 @@
+:root {
+  --bgColor: #eeddc6;
+  --fontColor: darkgreen;
+}
+
+/* universal selector - set box style */
+* {
+  box-sizing: border-box;
+}
+
+/* set default font to ~10px per rem */
+html {
+  font-size: 62.5%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  font-size: 1.6rem;
+  color: var(--fontColor);
+  background-color: var(--b);
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  padding: 1rem;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 3.2rem;
+}
+
+header nav {
+  margin: 1rem 0;
+  align-self: flex-end;
+}
+
+header nav a {
+  text-decoration: none;
+  color: inherit;
+}
