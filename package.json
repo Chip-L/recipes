@@ -1,7 +1,7 @@
 {
   "name": "recipes",
   "version": "1.0.0",
-  "description": "A simple SQL recipe database to explore many to many joins with Sequalize on a NodeJS Express server.",
+  "description": "A simple SQL recipe database to explore many to many joins with Sequelize on a NodeJS Express server.",
   "main": "index.js",
   "scripts": {
     "test": "jest -watchAll",
