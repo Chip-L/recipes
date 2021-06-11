@@ -8,8 +8,10 @@ const {
 } = require("../models");
 
 router.get("/", async (req, res) => {
+  let noRecipesFound = true;
   res.render("homepage", {
     loggedIn: req.session.loggedIn,
+    noRecipesFound,
   });
 });
 

@@ -1,0 +1,19 @@
+{{#if noRecipesFound}}
+  <div>
+    <h1>I'm sorry no recipes were found at this time.</h1>
+    <p>{{#if loggedIn}}
+        Please go to your
+        <a href="/dashboard">dashboard</a>
+        and create one!
+      {{else}}
+        Please
+        <a href="/login">log in</a>
+        and create one!
+      {{/if}}
+    </p>
+  </div>
+{{else}}
+  <div>
+    display latest recipe list!
+  </div>
+{{/if}}
