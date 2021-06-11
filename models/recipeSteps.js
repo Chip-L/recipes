@@ -19,7 +19,7 @@ RecipeSteps.init(
         min: 0,
       },
     },
-    desciption: {
+    description: {
       type: DataTypes.TEXT,
       allowNull: false,
     },
