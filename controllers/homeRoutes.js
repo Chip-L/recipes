@@ -19,10 +19,11 @@ router.get("/", async (req, res) => {
 router.get("/test", async (req, res) => {
   try {
     console.log("\n\n***************** Start *****************\n\n");
-
+    // find the recipe
     const recipe = await Recipe.findByPk(1);
     console.log("\n\nrecipe:", recipe.get({ plain: true }));
 
+    // find the ingredient or create it -- this returns an array rather than an object, the first element of the array is the object, the second element is a boolean for created. This takes the raw array and then later reassigns the value (the raw object - so it will need searlized) to a differnt variable.
     const ingredient1raw = await Ingredient.findOrCreate({
       where: {
         name: "some-ingredient",
@@ -48,18 +49,23 @@ router.get("/test", async (req, res) => {
       "\n\ningredient2:",
       ingredient2.get({ plain: true }),
       "\ncreated",
-      ingredient2[1]
+      ingredient2raw[1]
     );
 
+    // this returns an array of ingredients associated with the recipe - again, raw objects.
     let ingredientList = await recipe.getIngredients();
     console.log(
       "\n\nrecipe.getIngredients(): ",
       ingredientList.map((ingredient) => ingredient.get({ plain: true }))
     ); // []
+
+    // counts the number of ingredient RECIPE has (INTEGER)
     console.log(
       "\n\nrecipe.countIngredients()",
       await recipe.countIngredients()
     ); // 0
+
+    // checks to see if the RECIPE has a specific INGREDIENT (t/f)
     console.log(
       "\n\nrecipe.hasIngredient(ingredient1)",
       await recipe.hasIngredient(ingredient1)
@@ -72,6 +78,7 @@ router.get("/test", async (req, res) => {
     //   await recipe.countIngredients()
     // ); // 2
 
+    // actually adds an ingredient. use the through option to add the additional required values in to the join table.
     await recipe.addIngredient(ingredient1, {
       through: { amount: "1 cup" },
     });
@@ -81,23 +88,29 @@ router.get("/test", async (req, res) => {
       through: { amount: "1 cup" },
     });
     console.log("\n\nadded ingredient2");
+
+    // recounts the ingredients
     console.log(
       "\n\nrecipe.countIngredients()",
       await recipe.countIngredients()
     ); // 2
 
+    // rechecks if ingredient 1 is in the RECIPE
     console.log(
       "\n\nrecipe.hasIngredient(ingredient1)",
       await recipe.hasIngredient(ingredient1)
     ); // true
 
+    // removes ingredient from the recipe.
     await recipe.removeIngredient(ingredient2);
+    console.log("\n\nremoved ingredient2");
     console.log(
       "\n\nrecipe.countIngredients()",
       await recipe.countIngredients()
     ); // 1
 
     /*
+    // need syntax for this
     await recipe.createIngredient(
       { name: "yet-another-ingredient" }, through:
       { amount: "1 tsp" }
@@ -109,6 +122,7 @@ router.get("/test", async (req, res) => {
 */
 
     await recipe.setIngredients([]); // Un-associate all previously associated ingredients
+
     console.log(
       "\n\nrecipe.countIngredients()",
       await recipe.countIngredients()
