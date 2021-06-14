@@ -59,10 +59,10 @@ Recipe.init(
     nutritionalInformation: {
       type: DataTypes.TEXT,
     },
-    userId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
+    // userId: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false,
+    // },
   },
   {
     //hooks{},
