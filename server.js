@@ -2,6 +2,7 @@ const path = require("path");
 const express = require("express");
 const session = require("express-session");
 const exphbs = require("express-handlebars");
+const morgan = require("morgan");
 
 const routes = require("./controllers");
 const sequelize = require("./config/connection");
@@ -11,6 +12,9 @@ const helpers = require("./utils/helpers");
 // setup Express
 const app = express();
 const PORT = process.env.PORT || 3001;
+
+// add logger
+app.use(morgan("combined"));
 
 // setup handlebars engine with helpers
 const hbs = exphbs.create({ helpers });
