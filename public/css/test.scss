@@ -1,0 +1,46 @@
+.test {
+  margin: 0 1rem;
+  font-family: "Courier New", Courier, monospace;
+
+  h3 {
+    font-weight: bold;
+  }
+
+  .value {
+    margin-left: 3rem;
+  }
+
+  .array {
+    margin-left: 5rem;
+
+    div {
+      background-color: antiquewhite;
+
+      inner-div:not(:last-child):after {
+        content: ",";
+      }
+    }
+    &::before {
+      content: "[";
+      margin-left: -2rem;
+    }
+    &::after {
+      content: "]";
+      margin-left: -2rem;
+    }
+  }
+
+  .object {
+    // margin-left: 3rem;
+
+    p {
+      margin: 0 2rem;
+    }
+    &::before {
+      content: "{";
+    }
+    &::after {
+      content: "}";
+    }
+  }
+}

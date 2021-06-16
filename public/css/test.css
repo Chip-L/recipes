@@ -1,0 +1,47 @@
+.test {
+  margin: 0 1rem;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.test h3 {
+  font-weight: bold;
+}
+
+.test .value {
+  margin-left: 3rem;
+}
+
+.test .array {
+  margin-left: 5rem;
+}
+
+.test .array div {
+  background-color: antiquewhite;
+}
+
+.test .array div inner-div:not(:last-child):after {
+  content: ",";
+}
+
+.test .array::before {
+  content: "[";
+  margin-left: -2rem;
+}
+
+.test .array::after {
+  content: "]";
+  margin-left: -2rem;
+}
+
+.test .object p {
+  margin: 0 2rem;
+}
+
+.test .object::before {
+  content: "{";
+}
+
+.test .object::after {
+  content: "}";
+}
+/*# sourceMappingURL=test.css.map */
