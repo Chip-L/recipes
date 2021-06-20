@@ -12,11 +12,12 @@
 
   .array {
     margin-left: 5rem;
+    display: inline-block;
 
     div {
       background-color: antiquewhite;
 
-      inner-div:not(:last-child):after {
+      &:not(:last-child)::after {
         content: ",";
       }
     }
@@ -32,15 +33,32 @@
 
   .object {
     // margin-left: 3rem;
+    vertical-align: top;
+    // display: inline-block;
 
-    p {
+    div {
       margin: 0 2rem;
+      background-color: antiquewhite;
+
+      &:not(:last-child)::after {
+        content: "";
+      }
     }
+
     &::before {
       content: "{";
     }
+
     &::after {
       content: "}";
     }
+  }
+
+  .value {
+    background-color: antiquewhite;
+  }
+
+  .obj-property {
+    font-weight: bold;
   }
 }

@@ -1,38 +1,47 @@
-module.exports = {
-  printObject: function (object) {
-    printedObject = "<div class='object'>";
-    for (const property in object) {
-      if (Array.isArray(object[property])) {
-        printedObject += `<p>${property}: [ ${object[property].forEach(
-          (element) => element + ", "
-        )} ]<\p>`;
-      } else if (
-        toString
-          .call(function () {})
-          .split(" ")[1]
-          .slice(0, -1) === "Object"
-      ) {
-        printedObject = "<p>" + property + "</p>";
-        printedObject = this.printObject(object[property]);
-      } else {
-        printedObject += `<p>${property}: ${object[property]}<\p>`;
-      }
-    }
-    printedObject += "</div>";
-    return printedObject;
-  },
+/** returns a div of class array */
+const printArray = function (arr) {
+  printedArr = "<div class='array'>";
+  arr.forEach((element) => {
+    printedArr += `<div class="arr-element">${printItem(element, true)}</div>`;
+  });
+  printedArr += "</div>";
+  return printedArr;
 };
 
-/* 
-  print item {
-    if item is array => print Array
-    if item is object => print Object
-    else return item
+const printObject = function (object) {
+  printedObject = "<div class='object'>";
+  for (const property in object) {
+    printedObject += `<div class="obj-element"><span class="obj-property">${property}</span>: <span>${printItem(
+      object[property],
+      true
+    )}</span></div>`;
   }
+  printedObject += "</div>";
 
-  print array/object {
-    returnValue = "[/{"
-    for each item/property =>returnValue += print item + "<br />"
-    returnValue += "]/}"
+  return printedObject;
+};
+
+const printItem = function (item, fromObjectOrArray) {
+  switch (typeof item) {
+    case "function":
+      return "[function]";
+    case "object":
+      if (item === null || item instanceof Date) return item;
+      if (Array.isArray(item)) return printArray(item);
+      return printObject(item);
+    default:
+      if (fromObjectOrArray) return item;
+      return `<div class='value'>${item}</div>`;
   }
-*/
+};
+
+const displayValues = function (heading, value) {
+  if (heading == `await recipe.getIngredients()`) {
+    console.log(`await recipe.getIngredients()`, typeof item);
+  }
+  return `<div>
+  <h3>${heading}</h3>
+  ${printItem(value)}
+  </div>`;
+};
+module.exports = { displayValues, printItem, printObject, printArray };
